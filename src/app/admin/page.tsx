@@ -250,7 +250,11 @@ export default function AdminPage() {
                                     className="inline-flex items-center rounded-xl text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-500 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5"
                                 >
                                     <Download className="h-4 w-4 mr-2" />
-                                    Download Excel
+                                    {/* Large screens text */}
+                                    <span className="hidden sm:inline">Download Excel</span>
+
+                                    {/* Small screens text */}
+                                    <span className="sm:hidden">Excel</span>
                                 </button>
                                 <button
                                     onClick={fetchSubmissions}
