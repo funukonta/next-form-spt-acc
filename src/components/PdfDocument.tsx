@@ -126,13 +126,13 @@ const PdfDocument = ({ data }: PdfDocumentProps) => {
                         Dengan hormat,
                     </Text>
                     <Text style={styles.paragraph}>
-                        Sesuai dengan perjanjian pembiayaan dengan penyerahan Hak Milik Fidusia : <Text style={styles.boldData}>{data.nomor_kontrak}</Text> dan No Lang : <Text style={styles.boldData}>{data.nama_arho}</Text>, menurut catatan kami per angsuran Bapak/Ibu ke-<Text style={styles.boldData}>{data.angsuran_ke}</Text> sebesar <Text style={styles.boldData}>{formatCurrency(data.nominal_angsuran)}</Text> yang jatuh tempo pada tanggal <Text style={styles.boldData}>{formatDate(data.tanggal_jatuh_tempo)}</Text> sampai hari ini belum dilunasi.
+                        Sesuai dengan perjanjian pembiayaan dengan penyerahan Hak Milik Fidusia : <Text style={styles.boldData}>{data.nomor_kontrak}</Text> dan No Lang : <Text style={styles.boldData}>{data.nomor_langganan}</Text>, menurut catatan kami per angsuran Bapak/Ibu ke-<Text style={styles.boldData}>{data.angsuran_ke}</Text> sebesar <Text style={styles.boldData}>{formatCurrency(data.nominal_angsuran)}</Text> yang jatuh tempo pada tanggal <Text style={styles.boldData}>{formatDate(data.tanggal_jatuh_tempo)}</Text> sampai hari ini belum dilunasi.
                     </Text>
                     <Text style={styles.paragraph}>
-                        Oleh karena itu, kami mohon Bapak/Ibu melunasi angsuran tersebut paling lambat tanggal <Text style={styles.boldData}>{formatDate(data.tanggal_maksimal_pembayaran)}</Text>.
+                        Oleh karena itu, kami mohon Bapak/Ibu melunasi angsuran tersebut beserta keterlambatannya paling lambat tanggal <Text style={styles.boldData}>{formatDate(data.tanggal_maksimal_pembayaran)}</Text>.
                     </Text>
                     <Text style={styles.paragraphNoMargin}>
-                        Apabila sampai batas waktu yang ditentukan Bapak/Ibu belum dapat menyelesaikan kewajiban tersebut, maka dengan sangat menyesal petugas kami akan melakukan penarikan Kendaraan/Barang dimaksud. Seluruh biaya yang timbul akibat penarikan menjadi beban dan tanggung jawab Bapak/Ibu.
+                        Apabila sampai batas waktu yang ditentukan Bapak/Ibu belum dapat menyelesaikan kewajiban tersebut, maka dengan sangat menyesal petugas kami akan <Text style={styles.boldData}>melakukan penarikan Kendaraan/Barang dimaksud</Text>. Seluruh biaya yang timbul akibat penarikan menjadi beban dan tanggung jawab Bapak/Ibu.
                     </Text>
                     <Text style={styles.textNoIndent}>
                         Atas perhatian Bapak/Ibu, kami ucapkan terima kasih.
