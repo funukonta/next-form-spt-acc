@@ -5,8 +5,9 @@ const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
         backgroundColor: '#FFFFFF',
-        padding: 50,
+        paddingHorizontal: 70,
         paddingTop: 40,
+        paddingBottom: 40,
         fontFamily: 'Times-Roman',
     },
     // Header with logo and company name
