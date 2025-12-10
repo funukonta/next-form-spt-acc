@@ -1,5 +1,11 @@
 
 import { Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
+import { text } from 'stream/consumers'
+
+Font.registerHyphenationCallback(word => {
+    // Return entire word as unique part
+    return [word];
+});
 
 const styles = StyleSheet.create({
     page: {
@@ -120,7 +126,7 @@ const PdfDocument = ({ data }: PdfDocumentProps) => {
                 </View>
 
                 {/* Warning paragraph */}
-                <View style={styles.section}>
+                <View style={styles.section} wrap={false}>
                     <Text style={[styles.textNoIndent, styles.marginPerihal]}>
                         Perihal     : Peringatan Terakhir
                     </Text>
