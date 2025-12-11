@@ -2,48 +2,19 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-
-interface UserSession {
-    email: string
-    role: string
-}
+import { useAuth } from '@/hooks'
 
 export default function Header() {
-    const [user, setUser] = useState<UserSession | null>(null)
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const router = useRouter()
-    const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const { user, isAdmin, logout } = useAuth()
 
-    const checkUser = () => {
-        const stored = localStorage.getItem('form_app_user')
-        if (stored) {
-            setUser(JSON.parse(stored))
-        } else {
-            setUser(null)
-        }
-    }
+  const isActive = (path: string) => pathname === path
 
-    useEffect(() => {
-        checkUser()
-        window.addEventListener('storage', checkUser)
-        return () => window.removeEventListener('storage', checkUser)
-    }, [])
-
-    const handleLogout = () => {
-        localStorage.removeItem('form_app_user')
-        setUser(null)
-        window.dispatchEvent(new Event('storage'))
-        router.push('/login')
-    }
-
-    const isAdmin = user?.role === 'admin'
-
-    const isActive = (path: string) => pathname === path
-
-    const closeMobileMenu = () => setMobileMenuOpen(false)
+  const closeMobileMenu = () => setMobileMenuOpen(false)
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
@@ -87,7 +58,7 @@ export default function Header() {
                                     <span className="text-xs text-gray-500 capitalize">{user.role}</span>
                                 </div>
                                 <button
-                                    onClick={handleLogout}
+                                    onClick={logout}
                                     className="hidden sm:inline-flex items-center justify-center rounded-lg border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200"
                                 >
                                     Logout
@@ -156,7 +127,7 @@ export default function Header() {
                         {user ? (
                             <button
                                 onClick={() => {
-                                    handleLogout()
+                                    logout()
                                     closeMobileMenu()
                                 }}
                                 className="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200"

@@ -1,6 +1,7 @@
 
 import { Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
-import { text } from 'stream/consumers'
+import { SPTFormData } from '@/types'
+import { formatDate, formatCurrency } from '@/utils/formatters'
 
 Font.registerHyphenationCallback(word => {
     // Return entire word as unique part
@@ -79,39 +80,10 @@ const styles = StyleSheet.create({
 })
 
 interface PdfDocumentProps {
-    data: {
-        nama_arho?: string
-        nama_customer: string
-        nomor_kontrak: string
-        nomor_langganan: string
-        angsuran_ke: string
-        nominal_angsuran: string
-        tanggal_jatuh_tempo: string
-        tanggal_maksimal_pembayaran: string
-        tanggal_pembuatan_spt: string
-    }
+    data: SPTFormData
 }
 
 const PdfDocument = ({ data }: PdfDocumentProps) => {
-    const formatDate = (dateString: string) => {
-        if (!dateString) return '-'
-        const date = new Date(dateString)
-        return date.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        })
-    }
-
-    const formatCurrency = (amount: string) => {
-        if (!amount) return '-'
-        return new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0,
-        }).format(Number(amount))
-    }
-
     return (
         <Document>
             <Page size="A4" style={styles.page}>
