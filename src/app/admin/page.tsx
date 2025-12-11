@@ -18,6 +18,7 @@ interface Submission {
 }
 
 interface ParsedContent {
+    nama_arho: string
     nama_customer: string
     nomor_kontrak: string
     nomor_langganan: string
@@ -308,10 +309,11 @@ export default function AdminPage() {
                                                         <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-2">
                                                             {parsed ? (
                                                                 <>
-                                                                    <p><span className="font-medium">Jatuh Tempo:</span> {parsed.tanggal_jatuh_tempo}</p>
-                                                                    <p><span className="font-medium">Nominal:</span> Rp {Number(parsed.nominal_angsuran).toLocaleString('id-ID')}</p>
-                                                                    <p><span className="font-medium">Angsuran Ke:</span> {parsed.angsuran_ke}</p>
-                                                                    <p><span className="font-medium">Maksimal Bayar:</span> {parsed.tanggal_maksimal_pembayaran}</p>
+                                                                    <p><span className="font-medium">Nama ARHO:</span> <b>{parsed.nama_arho}</b></p>
+                                                                    <p><span className="font-medium">Jatuh Tempo:</span> <b>{parsed.tanggal_jatuh_tempo}</b></p>
+                                                                    <p><span className="font-medium">Nominal:</span> <b>Rp {Number(parsed.nominal_angsuran).toLocaleString('id-ID')}</b></p>
+                                                                    <p><span className="font-medium">Angsuran Ke:</span> <b>{parsed.angsuran_ke}</b></p>
+                                                                    <p><span className="font-medium">Maksimal Bayar:</span> <b>{parsed.tanggal_maksimal_pembayaran}</b></p>
                                                                 </>
                                                             ) : (
                                                                 <p>{submission.content}</p>
